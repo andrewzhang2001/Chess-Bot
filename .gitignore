@@ -2,3 +2,4 @@ lichessdb/
 pgn_games/
 .ipynb_checkpoints/
 __pycache__/
+*.csv

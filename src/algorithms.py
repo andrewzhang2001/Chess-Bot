@@ -19,9 +19,11 @@ def naive_alphabeta(board, N, board_eval_func):
     python-chess Move object: the best move for the current player
     """
     board_score = board_eval_func
+    nodes_expanded = 0
 
     def alphabeta(board, depth, maximizing_player, alpha=float("-inf"), beta=float("inf")):
-
+        nonlocal nodes_expanded
+        nodes_expanded+=1
         if board.is_game_over():
             result = board.result()
             if result == "1-0":
@@ -65,4 +67,6 @@ def naive_alphabeta(board, N, board_eval_func):
                         break
                 return bestScore, bestMove
 
-    return alphabeta(board, N, maximizing_player=board.turn==chess.WHITE)
+    answer = alphabeta(board, N, maximizing_player=board.turn==chess.WHITE)
+    print("Nodes expanded: %d" %(nodes_expanded))
+    return answer
